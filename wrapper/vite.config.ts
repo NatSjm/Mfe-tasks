@@ -9,9 +9,9 @@ export default defineConfig({
     federation({
       name: "wrapper",
       remotes: {
-        list: "http://localhost:5001/assets/listRemoteEntry.js",
-        editor: "http://localhost:5002/assets/editorRemoteEntry.js",
-        auth: "http://localhost:5003/assets/authRemoteEntry.js",
+        list: "https://list-delta-six.vercel.app/assets/listRemoteEntry.js",
+        editor: "https://editor-two-orpin.vercel.app/assets/editorRemoteEntry.js",
+        auth: "https://auth-kohl-seven-24.vercel.app/assets/authRemoteEntry.js",
       },
       shared: ["react", "react-dom"],
     })],

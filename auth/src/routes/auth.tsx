@@ -14,7 +14,7 @@ function Auth() {
                     className="!bg-blue-600 !text-white px-4 py-2 rounded-md cursor-pointer transition-colors duration-300 hover:bg-blue-700"
                     onClick={async () => {
                         await onNavigateContext?.auth?.signOut();
-                        onNavigateContext?.auth?.invalidate();
+                        onNavigateContext?.invalidate();
                     }}
                 >
                     Sign out
