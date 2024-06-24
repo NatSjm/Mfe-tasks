@@ -1,7 +1,24 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import {TanStackRouterVite} from "@tanstack/router-vite-plugin";
+import federation from "@originjs/vite-plugin-federation";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), TanStackRouterVite(),
+    federation({
+      name: "wrapper",
+      remotes: {
+        list: "http://localhost:5001/assets/listRemoteEntry.js",
+        editor: "http://localhost:5002/assets/editorRemoteEntry.js",
+        auth: "http://localhost:5003/assets/authRemoteEntry.js",
+      },
+      shared: ["react", "react-dom"],
+    })],
+  build: {
+    modulePreload: false,
+    target: "esnext",
+    minify: false,
+    cssCodeSplit: false,
+  },
 })
