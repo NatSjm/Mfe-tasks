@@ -2,21 +2,22 @@ import { useTransition } from "react";
 import {Checkbox} from "@/components/ui/checkbox";
 import * as React from "react";
  import updateCompleted from "@/actions/updateCompleted";
+import { useErrorBoundary } from "react-error-boundary";
 
 type Props = {
     id: number;
     completed: boolean;
-    getCountries: () => void;
+    getTasks: () => void;
 };
 
-export const CompletedCheckbox: React.FC<Props> = ({ id, completed, getCountries }) => {
+export const CompletedCheckbox: React.FC<Props> = ({ id, completed, getTasks }) => {
     const [isPending, startTransition] = useTransition();
-
+    const { showBoundary } = useErrorBoundary();
     const handleChangeCompletedTask = (value: boolean) => {
         if(isPending || !id) return;
         startTransition(async () => {
-            await updateCompleted(id, value);
-            getCountries()
+            await updateCompleted(id, value, showBoundary);
+            getTasks()
         });
     };
 

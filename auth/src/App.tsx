@@ -1,5 +1,5 @@
 import Auth from "./routes/auth";
-import './App.css'
+import './App.scss'
 import { MemoryRouter, Routes, Route } from 'react-router-dom';
 
 import { createContext } from "react";

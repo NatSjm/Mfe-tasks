@@ -12,8 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import {ArrowUpDown, MoreHorizontal} from "lucide-react"
 import DeleteTaskMenuItem from "@/components/DeleteTaskMenuItem";
-import {Dialog, DialogClose, DialogContent, DialogHeader, DialogTitle, DialogTrigger} from "@/components/ui/dialog";
-import Form from "@/components/Form";
+import {Dialog} from "@/components/ui/dialog";
 import CompletedCheckbox from "@/components/CompletedCheckbox";
 
 
@@ -26,8 +25,8 @@ export interface Task {
     completed: boolean;
 }
 
-//TODO: rename getCountries to getTasks
-export const getColumns: ColumnDef<Task>[] = (getCountries, navigate) => {
+
+export const getColumns: ColumnDef<Task>[] = (getTasks, navigate) => {
 
     return [
     {
@@ -37,7 +36,7 @@ export const getColumns: ColumnDef<Task>[] = (getCountries, navigate) => {
             <CompletedCheckbox
                 id={row.original.id!}
                 completed={row.original.completed}
-                getCountries={getCountries}
+                getTasks={getTasks}
             />
         ),
         enableSorting: false,
@@ -105,19 +104,9 @@ export const getColumns: ColumnDef<Task>[] = (getCountries, navigate) => {
                             <DropdownMenuLabel>Actions</DropdownMenuLabel>
                             <DropdownMenuSeparator/>
                                 <DropdownMenuItem onClick={()=>{ navigate?.(`/editor/?id=${task.id}`)}}>Edit</DropdownMenuItem>
-                            <DeleteTaskMenuItem getCountries={getCountries} id={task.id!}/>
+                            <DeleteTaskMenuItem getTasks={getTasks} id={task.id!}/>
                         </DropdownMenuContent>
                     </DropdownMenu>
-                    <DialogContent>
-                        <DialogHeader>
-                            <DialogTitle>Edit your task</DialogTitle>
-                        </DialogHeader>
-                        <Form task={task}/>
-                        <DialogClose asChild>
-                            <button id="close" hidden type="button">close</button>
-                        </DialogClose>
-                    </DialogContent>
-
                 </Dialog>
             )
         },

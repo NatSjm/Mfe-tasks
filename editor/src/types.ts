@@ -6,3 +6,10 @@ export interface Task {
     priority: string;
     completed: boolean;
 }
+
+export interface Errors {
+    name: string;
+    description: string;
+    priority: string;
+    deadline: string;
+}

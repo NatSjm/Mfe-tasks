@@ -9,7 +9,7 @@ import {routeTree} from './routeTree.gen'
 const router = createRouter({
         routeTree,
         context: {
-            authentication: undefined
+            authentication: undefined!
         },
     }
 );
@@ -27,7 +27,7 @@ if (!rootElement.innerHTML) {
     const root = ReactDOM.createRoot(rootElement)
     root.render(
         <StrictMode>
-            <RouterProvider router={router}/>
+                <RouterProvider router={router}/>
         </StrictMode>,
     )
 }

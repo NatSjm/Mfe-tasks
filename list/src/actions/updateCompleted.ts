@@ -1,5 +1,5 @@
 import supabase from "../utils/supabase";
-export default async function updateCompleted(id: number, completed: boolean) {
+export default async function updateCompleted(id: number, completed: boolean, handleError: (error: Error) => void){
 
     const {data, error} = await supabase
         .from('todos')
@@ -8,8 +8,7 @@ export default async function updateCompleted(id: number, completed: boolean) {
         .select()
 
     if (error) {
-        console.error("Error deleting todo:", error);
-        return;
+        handleError(error)
     }
 
 }

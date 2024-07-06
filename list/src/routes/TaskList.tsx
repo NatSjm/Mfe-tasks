@@ -1,4 +1,3 @@
-//import {createClient} from "@/utils/supabase/server";
 import {getColumns} from "@/components/columns"
 import {DataTable} from "@/components/DataTable"
 import { useEffect, useState } from "react";
@@ -16,10 +15,10 @@ export default  function TaskList() {
     const [tasks, setTasks] = useState([]);
 
     useEffect(() => {
-        getCountries();
+        getTasks();
     }, []);
 
-    async function getCountries() {
+    async function getTasks() {
         try {
             const {data} = await supabase.from("todos").select();
             setTasks(data);
@@ -28,14 +27,14 @@ export default  function TaskList() {
         }
     }
 
-    const columns = getColumns(getCountries, onNavigateContext?.onNavigate);
+    const columns = getColumns(getTasks, onNavigateContext?.onNavigate);
 
 
     return (
         <div className="container mx-auto">
             <h1 className="text-2xl font-bold my-4">Tasks</h1>
-            <Link to="/about" className="mb-4 inline-block text-blue-500 underline">Time management tips</Link>
-            <DataTable columns={columns} data={tasks || []} getCountries={getCountries}/>
+            <Link to="about" className="mb-4 inline-block text-blue-500 underline">Time management tips</Link>
+            <DataTable columns={columns} data={tasks || []} getTasks={getTasks}/>
         </div>
     )
 }

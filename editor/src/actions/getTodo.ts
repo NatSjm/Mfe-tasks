@@ -1,5 +1,4 @@
 import  supabase from "../utils/supabase";
-import {Task} from "../types.ts";
 
 export default async function getTodo(id) {
     const {data, error} = await supabase
@@ -10,8 +9,7 @@ export default async function getTodo(id) {
 
 
     if (error) {
-        console.log('error',error)
+        throw new Error(error.message);
     }
-     console.log('data',data)
     return data;
 }

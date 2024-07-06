@@ -1,7 +1,7 @@
 import supabase from "../utils/supabase";
 
 
-export default async function deleteTodo(todoId: number) {
+export default async function deleteTodo(todoId: number, handleError: (error: Error) => void) {
 
     if (!todoId) {
         return;
@@ -14,7 +14,6 @@ export default async function deleteTodo(todoId: number) {
 
 
     if (error) {
-        console.error("Error deleting todo:", error);
-        return;
+        handleError(error)
     }
 }
